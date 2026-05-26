@@ -1,0 +1,26 @@
+{
+  "name": "koelzeker-airco-leadsite",
+  "version": "1.0.0",
+  "description": "Nederlandse leadgeneratie website voor airco-installatie en klimaatspecialist advies.",
+  "scripts": {
+    "dev": "ASTRO_TELEMETRY_DISABLED=1 astro dev",
+    "build": "ASTRO_TELEMETRY_DISABLED=1 astro build",
+    "preview": "ASTRO_TELEMETRY_DISABLED=1 astro preview"
+  },
+  "keywords": [
+    "airco",
+    "airco installatie",
+    "installatie",
+    "offerte"
+  ],
+  "author": "",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.2",
+    "@lucide/astro": "^1.16.0",
+    "@tailwindcss/vite": "4.1.18",
+    "astro": "^6.3.6",
+    "tailwindcss": "4.1.18"
+  }
+}
