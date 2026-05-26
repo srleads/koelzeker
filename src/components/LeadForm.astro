@@ -1,0 +1,69 @@
+---
+const { compact = false, dark = false } = Astro.props;
+
+const formClass = dark ? "service-card p-5 lg:p-5" : "service-card cable-corner p-6";
+const gridClass = compact ? "grid grid-cols-2 gap-3" : "grid gap-3 sm:grid-cols-2";
+const fieldClass = "grid gap-1.5 text-[14px] font-semibold text-black";
+const wideClass = "grid gap-1.5 text-[14px] font-semibold text-black sm:col-span-2";
+---
+
+<form
+  name="airco-advies"
+  method="POST"
+  action="/bedankt"
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+  class={formClass}
+>
+  <input type="hidden" name="form-name" value="airco-advies" />
+  <p class="hidden">
+    <label>
+      Niet invullen:
+      <input name="bot-field" />
+    </label>
+  </p>
+
+  <div class={compact ? "mb-4" : "mb-6"}>
+    <p class="section-eyebrow">Gratis advies</p>
+    <h2 class={compact ? "mt-2 text-[22px] font-bold leading-tight text-brand-deep" : "mt-2 text-[24px] font-bold leading-tight text-brand-deep"}>
+      Vraag nu je gratis advies aan!
+    </h2>
+    <p class={compact ? "mt-2 text-[14px] leading-6 text-black" : "mt-2 text-[15px] leading-7 text-black"}>
+      Vertel kort je situatie. Wij kijken met je mee en nemen contact op.
+    </p>
+  </div>
+
+  <div class={gridClass}>
+    <label class={fieldClass}>
+      Naam
+      <input class="form-input" type="text" name="naam" autocomplete="name" required />
+    </label>
+    <label class={fieldClass}>
+      Email
+      <input class="form-input" type="email" name="email" autocomplete="email" required />
+    </label>
+    <label class={fieldClass}>
+      Telefoonnummer
+      <input class="form-input" type="tel" name="telefoonnummer" autocomplete="tel" required />
+    </label>
+    <label class={fieldClass}>
+      Adres
+      <input class="form-input" type="text" name="adres" autocomplete="street-address" required />
+    </label>
+    <label class={wideClass}>
+      Graag wil ik meer weten over...
+      <textarea
+        class={compact ? "form-input min-h-24 resize-y" : "form-input min-h-32 resize-y"}
+        name="bericht"
+        placeholder="Bijvoorbeeld: advies over woonkamer, slaapkamer, meerdere kamers of onderhoud..."
+      ></textarea>
+    </label>
+  </div>
+
+  <button type="submit" class="btn-primary cta-focus mt-5">
+    Versturen
+  </button>
+  <p class="mt-4 text-xs leading-5 text-black">
+    Je gegevens worden alleen gebruikt om contact op te nemen over je aanvraag.
+  </p>
+</form>

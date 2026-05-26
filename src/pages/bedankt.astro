@@ -1,0 +1,40 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { CheckCircle2, Phone } from "@lucide/astro";
+---
+
+<BaseLayout
+  title="Bedankt voor je aanvraag | Koelzeker Klimaatspecialist"
+  description="Je aanvraag voor airco advies is ontvangen. We nemen snel contact met je op."
+  canonical="/bedankt"
+>
+  <section class="bg-white section-pad">
+    <div class="container-page">
+      <div class="mx-auto max-w-3xl service-card p-8 text-center sm:p-12">
+        <div class="mx-auto grid h-16 w-16 place-items-center rounded-[9px] bg-brand-blue text-white">
+          <CheckCircle2 size={34} aria-hidden="true" />
+        </div>
+        <p class="section-eyebrow mt-6">Aanvraag ontvangen</p>
+        <h1 class="section-title mt-3">Bedankt, we nemen snel contact op</h1>
+        <p class="section-copy mx-auto mt-5 max-w-2xl">
+          We bekijken je airco-aanvraag en reageren meestal dezelfde werkdag met een korte check of vervolgvraag.
+        </p>
+        <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+          <a
+            href="/"
+            class="btn-primary cta-focus"
+          >
+            Terug naar homepage
+          </a>
+          <a
+            href="tel:+31850604490"
+            class="btn-outline btn-outline-dark cta-focus"
+          >
+            Bel direct
+            <Phone size={18} aria-hidden="true" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

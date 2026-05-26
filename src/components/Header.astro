@@ -1,0 +1,41 @@
+---
+import { Mail, Phone } from "@lucide/astro";
+---
+
+<header class="relative z-30 bg-white">
+  <div class="bg-brand-blue text-white">
+    <div class="container-page flex flex-col gap-2 py-2 text-[13px] sm:flex-row sm:items-center sm:justify-between">
+      <div class="flex flex-wrap items-center gap-x-6 gap-y-1">
+        <a class="inline-flex items-center gap-2 hover:underline" href="tel:+31850604490">
+          <Phone size={14} aria-hidden="true" />
+          085 060 44 90
+        </a>
+        <a class="inline-flex items-center gap-2 hover:underline" href="mailto:info@koelzeker.nl">
+          <Mail size={14} aria-hidden="true" />
+          info@koelzeker.nl
+        </a>
+      </div>
+      <p class="text-white">Airco installatie, onderhoud en advies aan huis</p>
+    </div>
+  </div>
+
+  <div class="border-b border-slate-200 bg-white">
+    <div class="container-page flex min-h-[76px] items-center justify-between gap-6">
+      <a href="/" class="flex items-center gap-3" aria-label="Koelzeker Klimaatspecialist homepage">
+        <img src="/images/koelzeker-logo.webp" alt="Koelzeker Klimaatspecialist" class="h-[52px] w-auto max-w-[245px] object-contain" />
+      </a>
+
+      <nav class="hidden items-center gap-7 text-[15px] font-semibold text-black lg:flex" aria-label="Hoofdnavigatie">
+        <a class="text-brand-blue" href="/#top">Home</a>
+        <a class="hover:text-brand-blue" href="/#diensten">Airco's</a>
+        <a class="hover:text-brand-blue" href="/#werkwijze">Werkwijze</a>
+        <a class="hover:text-brand-blue" href="/#reviews">Reviews</a>
+        <a class="hover:text-brand-blue" href="/#offerte">Contact</a>
+      </nav>
+
+      <a href="/#offerte" class="btn-primary cta-focus hidden md:inline-flex">
+        Vraag advies aan
+      </a>
+    </div>
+  </div>
+</header>

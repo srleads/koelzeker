@@ -1,0 +1,62 @@
+---
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+const {
+  title = "Koelzeker Klimaatspecialist | Airco laten installeren",
+  description = "Vraag vrijblijvend advies aan voor airco installatie, onderhoud of vervanging door een ervaren klimaatspecialist.",
+  canonical = Astro.url.pathname,
+} = Astro.props;
+
+const canonicalUrl = new URL(canonical, Astro.site ?? Astro.url.origin).toString();
+---
+
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="nl_NL" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content="https://commons.wikimedia.org/wiki/Special:FilePath/New_air_conditioner_120730-F-GO396-660.jpg?width=1280" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#0b76cf" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      name: "Koelzeker Klimaatspecialist",
+      image: "https://commons.wikimedia.org/wiki/Special:FilePath/New_air_conditioner_120730-F-GO396-660.jpg?width=1280",
+      url: canonicalUrl,
+      telephone: "+31 85 060 44 90",
+      areaServed: "Nederland",
+      priceRange: "$$",
+      description,
+      serviceType: "Airco installatie en onderhoud",
+      address: {
+        "@type": "PostalAddress",
+        addressCountry: "NL",
+      },
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "4.8",
+        reviewCount: "216",
+      },
+    })}></script>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
