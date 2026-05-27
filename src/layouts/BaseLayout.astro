@@ -10,6 +10,7 @@ const {
 } = Astro.props;
 
 const canonicalUrl = new URL(canonical, Astro.site ?? Astro.url.origin).toString();
+const shareImage = new URL("/images/airco-hero-v2.webp", Astro.site ?? Astro.url.origin).toString();
 ---
 
 <!doctype html>
@@ -26,7 +27,7 @@ const canonicalUrl = new URL(canonical, Astro.site ?? Astro.url.origin).toString
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:image" content="https://commons.wikimedia.org/wiki/Special:FilePath/New_air_conditioner_120730-F-GO396-660.jpg?width=1280" />
+    <meta property="og:image" content={shareImage} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="theme-color" content="#0b76cf" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -34,7 +35,7 @@ const canonicalUrl = new URL(canonical, Astro.site ?? Astro.url.origin).toString
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
       name: "Koelzeker Klimaatspecialist",
-      image: "https://commons.wikimedia.org/wiki/Special:FilePath/New_air_conditioner_120730-F-GO396-660.jpg?width=1280",
+      image: shareImage,
       url: canonicalUrl,
       telephone: "+31 85 060 44 90",
       areaServed: "Nederland",
