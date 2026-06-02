@@ -4,13 +4,60 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 
 const {
-  title = "Koelzeker Klimaatspecialist | Airco laten installeren",
-  description = "Vraag vrijblijvend advies aan voor airco installatie, onderhoud of vervanging door een ervaren klimaatspecialist.",
+  title = "Airco laten installeren | Koelzeker Klimaatspecialist",
+  description = "Vraag gratis airco advies aan voor airco installatie, onderhoud of vervanging aan huis. Koelzeker helpt met duidelijke prijs, nette montage en persoonlijk advies.",
   canonical = Astro.url.pathname,
+  robots = "index, follow",
+  schema = [],
 } = Astro.props;
 
-const canonicalUrl = new URL(canonical, Astro.site ?? Astro.url.origin).toString();
-const shareImage = new URL("/images/airco-hero-v2.webp", Astro.site ?? Astro.url.origin).toString();
+const siteUrl = Astro.site ?? Astro.url.origin;
+const canonicalUrl = new URL(canonical, siteUrl).toString();
+const shareImage = new URL("/images/airco-hero-v2.webp", siteUrl).toString();
+const logoUrl = new URL("/images/koelzeker-logo.webp", siteUrl).toString();
+const businessId = new URL("/#bedrijf", siteUrl).toString();
+const websiteId = new URL("/#website", siteUrl).toString();
+const schemaItems = Array.isArray(schema) ? schema : [schema];
+const baseSchema = [
+  {
+    "@type": "WebSite",
+    "@id": websiteId,
+    name: "Koelzeker Klimaatspecialist",
+    url: new URL("/", siteUrl).toString(),
+    inLanguage: "nl-NL",
+    publisher: { "@id": businessId },
+  },
+  {
+    "@type": "LocalBusiness",
+    "@id": businessId,
+    name: "Koelzeker Klimaatspecialist",
+    url: new URL("/", siteUrl).toString(),
+    image: shareImage,
+    logo: logoUrl,
+    telephone: "+31 85 060 44 90",
+    email: "info@koelzeker.nl",
+    areaServed: ["Nederland"],
+    priceRange: "$$",
+    description,
+    knowsAbout: [
+      "Airco installatie",
+      "Airco laten installeren",
+      "Split-airco plaatsen",
+      "Airco onderhoud",
+      "Airco advies aan huis",
+    ],
+    serviceType: "Airco installatie en onderhoud",
+    address: {
+      "@type": "PostalAddress",
+      addressCountry: "NL",
+    },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.8",
+      reviewCount: "216",
+    },
+  },
+];
 ---
 
 <!doctype html>
@@ -21,36 +68,25 @@ const shareImage = new URL("/images/airco-hero-v2.webp", Astro.site ?? Astro.url
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content={robots} />
+    <meta name="format-detection" content="telephone=yes" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="nl_NL" />
+    <meta property="og:site_name" content="Koelzeker Klimaatspecialist" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={shareImage} />
+    <meta property="og:image:alt" content="Airco installateur van Koelzeker aan het werk" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={shareImage} />
     <meta name="theme-color" content="#0b76cf" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      name: "Koelzeker Klimaatspecialist",
-      image: shareImage,
-      url: canonicalUrl,
-      telephone: "+31 85 060 44 90",
-      areaServed: "Nederland",
-      priceRange: "$$",
-      description,
-      serviceType: "Airco installatie en onderhoud",
-      address: {
-        "@type": "PostalAddress",
-        addressCountry: "NL",
-      },
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: "4.8",
-        reviewCount: "216",
-      },
+      "@graph": [...baseSchema, ...schemaItems],
     })}></script>
   </head>
   <body>
