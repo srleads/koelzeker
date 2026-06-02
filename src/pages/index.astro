@@ -18,8 +18,8 @@ import {
 const services = [
   {
     icon: Snowflake,
-    title: "Airco installatie",
-    text: "Advies en montage van een passende airco voor woonkamer, slaapkamer, kantoor of meerdere ruimtes.",
+    title: "Airco installeren aan huis",
+    text: "Advies en montage van een passende split-airco voor woonkamer, slaapkamer, kantoor of meerdere ruimtes.",
   },
   {
     icon: Gauge,
@@ -28,7 +28,7 @@ const services = [
   },
   {
     icon: Wrench,
-    title: "Onderhoud en service",
+    title: "Airco onderhoud en service",
     text: "Controle, reiniging en onderhoud zodat je airco stil, zuinig en betrouwbaar blijft werken.",
   },
 ];
@@ -82,6 +82,10 @@ const faqs = [
     a: "Dat hangt af van de ruimte, isolatie, zonligging en gewenste functies. Daarom vragen we eerst kort je situatie uit.",
   },
   {
+    q: "Wat kost een airco laten installeren?",
+    a: "De prijs hangt af van het type airco, het vermogen, de leidingroute en de plek van de binnen- en buitenunit. Daarom geven we eerst advies en een duidelijke prijsindicatie.",
+  },
+  {
     q: "Kan een airco ook verwarmen?",
     a: "Ja. Veel moderne split-airco's kunnen naast koelen ook efficiënt verwarmen. We adviseren wat past bij jouw gebruik.",
   },
@@ -90,13 +94,52 @@ const faqs = [
     a: "Ja. Je ontvangt eerst advies en een duidelijke prijsindicatie. Je zit nergens aan vast.",
   },
 ];
+
+const siteUrl = Astro.site ?? Astro.url.origin;
+const pageUrl = new URL("/", siteUrl).toString();
+const businessId = new URL("/#bedrijf", siteUrl).toString();
+const pageSchema = [
+  {
+    "@type": "Service",
+    "@id": new URL("/#airco-installatie", siteUrl).toString(),
+    name: "Airco laten installeren aan huis",
+    serviceType: "Airco installatie, advies en onderhoud",
+    areaServed: "Nederland",
+    provider: { "@id": businessId },
+    url: pageUrl,
+    description: "Airco advies en installatie voor particuliere woningen en kleinzakelijke adressen, inclusief koelvermogen berekenen, montage en onderhoud.",
+    offers: {
+      "@type": "Offer",
+      availability: "https://schema.org/InStock",
+      priceCurrency: "EUR",
+      url: new URL("/#offerte", siteUrl).toString(),
+    },
+  },
+  {
+    "@type": "BreadcrumbList",
+    "@id": new URL("/#breadcrumb", siteUrl).toString(),
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: pageUrl,
+      },
+    ],
+  },
+];
 ---
 
-<BaseLayout>
+<BaseLayout
+  title="Airco laten installeren aan huis | Koelzeker Klimaatspecialist"
+  description="Airco laten installeren? Vraag gratis advies aan voor airco installatie aan huis, onderhoud en vervanging. Duidelijke prijs, nette montage en persoonlijk advies."
+  canonical="/"
+  schema={pageSchema}
+>
   <section id="top" class="relative overflow-hidden bg-brand-navy">
     <img
       src="/images/airco-hero-v2.webp"
-      alt="Airco monteur installeert een systeem"
+      alt="Airco installateur monteert een split-airco aan huis"
       class="absolute inset-0 h-full w-full object-cover opacity-35"
       loading="eager"
       fetchpriority="high"
@@ -106,10 +149,10 @@ const faqs = [
       <div class="text-white">
         <p class="mb-3 text-[14px] font-semibold uppercase text-white">Airco installatie en advies</p>
         <h1 class="max-w-[650px] text-[34px] font-bold leading-tight sm:text-[42px] md:text-[48px]">
-          Airco laten installeren door een klimaatspecialist
+          Airco laten installeren aan huis
         </h1>
         <p class="mt-5 max-w-[590px] text-[17px] leading-8 text-white">
-          Voor particuliere woningen en kleine bedrijven. Wij adviseren over de juiste airco, plaatsen netjes en zorgen dat je comfortabel kunt koelen en verwarmen.
+          Voor particuliere woningen en kleine bedrijven. Koelzeker adviseert over de juiste airco, berekent het benodigde vermogen en zorgt voor nette montage, onderhoud en uitleg.
         </p>
         <div class="mt-7">
           <a href="#offerte" class="btn-primary cta-focus">Vraag advies aan</a>
@@ -126,7 +169,7 @@ const faqs = [
     <div class="container-page">
       <SectionIntro
         eyebrow="Onze diensten"
-        title="Praktische hulp bij airco’s"
+        title="Airco installatie, onderhoud en advies"
         text="Geen ingewikkelde verkooppraat, maar duidelijk advies over wat in jouw woning of bedrijfspand werkt."
       />
 
@@ -156,7 +199,7 @@ const faqs = [
       <div>
         <img
           src="/images/airco-buitenunit-v2.webp"
-          alt="Airco monteur controleert een buitenunit"
+          alt="Airco monteur controleert buitenunit bij een woning"
           class="h-[390px] w-full rounded-[4px] object-cover"
           loading="lazy"
         />
@@ -230,7 +273,7 @@ const faqs = [
       </div>
       <img
         src="/images/airco-advies-v2.webp"
-        alt="Airco specialist controleert instellingen"
+        alt="Airco specialist controleert instellingen van een airco"
         class="h-[320px] w-full rounded-[4px] object-cover"
         loading="lazy"
       />
@@ -265,7 +308,7 @@ const faqs = [
       <div>
         <SectionIntro
           eyebrow="Contact"
-          title="Vraag gratis advies aan"
+          title="Vraag gratis airco advies aan"
           text="Vul het formulier in en vertel kort waar je een airco wilt plaatsen. We nemen contact op voor advies en een duidelijke prijsindicatie."
         />
         <div class="cable-corner-left mt-6 border border-l-4 border-brand-orange bg-white p-5 text-[15px] leading-7 text-black">
